@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>すやネコ文庫 ｜ Suyaneko Bunko</title>
+<meta name="description" content="気分語に頼らず“事実で探す”読書地図と、青空文庫中心の朗読をお届けする小さな文庫。">
+<meta property="og:title" content="すやネコ文庫 ｜ Suyaneko Bunko">
+<meta property="og:description" content="読書地図（客観指標で探す）と朗読（青空文庫）のハブサイト。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://esortseld.github.io/">
+<meta name="theme-color" content="#f8efe8">
+<style>
+  :root{
+    --bg:#faf8f6; --ink:#222; --sub:#555; --line:#eee;
+    --card:#fff; --accent:#134a96; --btn:#e7f0fb; --btnline:#cfe2ff;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,"Noto Sans JP",sans-serif;color:var(--ink);background:var(--bg)}
+  header{padding:52px 16px;background:linear-gradient(180deg,#f8efe8 0%, transparent 70%)}
+  .wrap{max-width:960px;margin:0 auto;padding:0 16px}
+  h1{margin:0 0 6px;font-size:clamp(1.7rem,4vw,2.6rem)}
+  .tagline{margin:0;color:var(--sub)}
+  .hero{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px}
+  .btn{
+    display:inline-block;padding:12px 16px;border-radius:12px;border:1px solid var(--line);
+    background:#f3f1ef;color:var(--ink);text-decoration:none;font-weight:600
+  }
+  .btn.primary{background:var(--btn);border-color:var(--btnline);color:var(--accent)}
+  main{padding:28px 0}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+  .card h3{margin:0 0 8px;font-size:1.05rem}
+  .card p{margin:0;color:var(--sub);line-height:1.7}
+  .list{margin:8px 0 0;padding-left:1.1em;color:var(--sub)}
+  .list li{margin:.2em 0}
+  footer{padding:28px 16px;color:#777}
+  a.inline{color:#345;text-decoration:none;border-bottom:1px solid #ccd}
+  .note{font-size:.9rem;color:#666;margin-top:8px}
+  @media (prefers-color-scheme: dark){
+    :root{--bg:#0f0e0e; --ink:#eee; --sub:#aaa; --line:#2a2a2a; --card:#151515; --btn:#152238; --btnline:#2a3f66}
+    a.inline{color:#cfe2ff;border-bottom-color:#2a3f66}
+    header{background:linear-gradient(180deg,#1a1816 0%, transparent 70%)}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>すやネコ文庫 <small style="font-weight:400;color:#777">｜ Suyaneko Bunko</small></h1>
+    <p class="tagline">気分ではなく“事実”で選ぶ読書地図と、青空文庫の朗読チャンネル。</p>
+    <div class="hero">
+      <!-- 読書地図（既に運用中のURL） -->
+      <a class="btn primary" href="https://esortseld.github.io/readmap/">読書地図をひらく</a>
+      <!-- 朗読：YouTubeチャンネルURLに差し替え -->
+      <a class="btn" href="https://www.youtube.com/@YOUR_CHANNEL" target="_blank" rel="noopener">朗読チャンネル（YouTube）</a>
+      <!-- Instagramなど導線があれば -->
+      <a class="btn" href="https://www.instagram.com/YOUR_INSTAGRAM" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="grid">
+    <article class="card">
+      <h3>読書地図とは</h3>
+      <p>ページ数・語り・時間構造・時代・地域など、客観指標だけで本を探せる小さなカタログ。作品カードでは主観メモ（採点・おすすめ）を枠分けして掲載します。</p>
+      <ul class="list">
+        <li><a class="inline" href="https://esortseld.github.io/readmap/">読書地図（一覧）へ</a></li>
+        <li><a class="inline" href="https://esortseld.github.io/readmap/works/hanin-ni-tsugu.html">『犯人に告ぐ』の作品カード</a></li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <h3>朗読（青空文庫）</h3>
+      <p>著作権切れの作品を中心にやさしい朗読をお届け。出典を明記し、本文の改変は行いません。</p>
+      <ul class="list">
+        <li><a class="inline" href="https://www.youtube.com/@YOUR_CHANNEL" target="_blank" rel="noopener">YouTubeチャンネルへ</a></li>
+        <li><a class="inline" href="https://www.aozora.gr.jp/" target="_blank" rel="noopener">青空文庫（公式）</a></li>
+      </ul>
+      <p class="note">※ 朗読の公開先はYouTube、本サイトは案内とデータのハブです。</p>
+    </article>
+
+    <article class="card">
+      <h3>更新情報（メモ）</h3>
+      <p>・2025-11-01 読書地図を公開／作品カードの試運転開始。</p>
+      <p class="note">手動更新欄：必要なときだけ1行追記でOK。</p>
+    </article>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <small>© すやネコ文庫 / Suyaneko Bunko</small>
+  </div>
+</footer>
+</body>
+</html>
