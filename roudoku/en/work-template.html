@@ -1,47 +1,142 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>(Work Title) – English Text | Suyaneko Bunko</title>
-<meta name="description" content="English transcript for Suyaneko Reading.">
-<meta name="theme-color" content="#f8efe8">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Reading Text | Suyaneko Bunko</title>
+<meta name="description" content="English reading text for Suyaneko Bunko.">
 <style>
-  :root{--bg:#faf8f6; --ink:#222; --sub:#555; --line:#eee; --card:#fff}
+  :root{--bg:#faf8f6;--card:#fff;--ink:#222;--sub:#666;--line:#eee;--link:#2b6cb0}
   *{box-sizing:border-box}
-  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,"Noto Sans JP",sans-serif;color:var(--ink);background:var(--bg)}
-  header{padding:40px 16px;background:linear-gradient(180deg,#f8efe8,transparent)}
-  .wrap{max-width:880px;margin:0 auto;padding:0 16px}
-  h1{margin:0 0 8px;font-size:clamp(1.4rem,3.2vw,2.1rem)}
-  .meta{margin:0 0 14px;color:#666}
-  a.nav{display:inline-block;padding:8px 12px;border:1px solid var(--line);border-radius:10px;background:#f3f1ef;color:#222;text-decoration:none;margin-right:8px}
-  main{padding:20px 0}
-  article p{line-height:1.9;margin:.8em 0}
-  footer{padding:28px 16px;color:#777}
+  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,"Noto Sans",sans-serif;color:var(--ink);background:var(--bg)}
+  header{padding:32px 16px;background:linear-gradient(180deg,#f8efe8,transparent)}
+  .wrap{max-width:960px;margin:0 auto;padding:0 16px}
+  a{color:var(--link);text-decoration:none;border-bottom:1px solid #cfe2ff}
+  h1{margin:6px 0 0;font-size:clamp(1.4rem,3.5vw,2.2rem)}
+  .meta{margin:.25rem 0 1rem;color:var(--sub)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin:14px 0}
+  .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+  .btn{display:inline-block;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:#f3f1ef;color:var(--ink);text-decoration:none;font-weight:600}
+  pre{white-space:pre-wrap;word-wrap:break-word}
+  .md p{margin:0 0 1em}
+  .muted{color:#999;font-size:.9rem}
   @media (prefers-color-scheme: dark){
-    :root{--bg:#0f0e0e; --ink:#eee; --sub:#aaa; --line:#2a2a2a; --card:#151515}
+    :root{--bg:#0f0e0e;--card:#151515;--ink:#eee;--sub:#aaa;--line:#2a2a2a;--link:#9ec0ff}
+    a{border-bottom-color:#2a3f66}
   }
 </style>
 </head>
 <body>
 <header class="wrap">
-  <a class="nav" href="../index.html">← 朗読ページへ戻る</a>
-  <h1>(Work Title) — English Text</h1>
-  <p class="meta">Original author: (Author Name)</p>
+  <div><a href="../index.html">← Back to Roudoku</a></div>
+  <h1 id="title">Reading text</h1>
+  <p class="meta" id="meta"></p>
+  <div class="toolbar">
+    <a id="yt" class="btn" href="#" target="_blank" rel="noopener">Listen on YouTube</a>
+    <a id="aozora" class="btn" href="#" target="_blank" rel="noopener">Japanese text (Aozora Bunko)</a>
+    <button id="copy" class="btn" type="button">Copy all text</button>
+  </div>
 </header>
 
 <main class="wrap">
-  <article>
-    <!-- ▼ここに英語テキストを直接貼り付け（必要に応じて段落分割） -->
-    <p>[First paragraph of the English text goes here.]</p>
-    <p>[Second paragraph …]</p>
-    <p>[...]</p>
-    <!-- ▲ここまで -->
-  </article>
+  <section class="card" id="content">
+    <p class="muted">Loading…</p>
+  </section>
 </main>
 
-<footer>
-  <div class="wrap"><small>© Suyaneko Bunko</small></div>
+<footer class="wrap">
+  <p class="muted">© Suyaneko Bunko</p>
 </footer>
+
+<script>
+/**
+ * Query params:
+ *   ?id=1001FNT01           // required, slug = file name base
+ *   &title=Blue+Button      // optional
+ *   &author=Ogawa+Mimei     // optional
+ *   &yt=https://...         // optional (YouTube URL)
+ *   &jp=https://...         // optional (Aozora URL)
+ */
+const qs  = new URLSearchParams(location.search);
+const id  = (qs.get('id') || '').trim();
+const title  = (qs.get('title')  || '').trim();
+const author = (qs.get('author') || '').trim();
+const yt  = (qs.get('yt')  || '').trim();
+const jp  = (qs.get('jp')  || '').trim();
+
+if(!id){
+  document.getElementById('content').innerHTML =
+    `<p style="color:#b00">Error: missing parameter <code>?id=SLUG</code>.</p>`;
+  throw new Error('missing id');
+}
+
+document.getElementById('title').textContent =
+  title ? `${title} — English text` : `English text (${id})`;
+document.getElementById('meta').textContent =
+  author ? `Author: ${author}` : '';
+
+const ytA = document.getElementById('yt');
+const jpA = document.getElementById('aozora');
+if(yt) ytA.href = yt; else ytA.style.display='none';
+if(jp) jpA.href = jp; else jpA.style.display='none';
+
+// 1) try Markdown -> 2) fallback to plain text
+const base = `./texts/${id}`;
+const candidates = [`${base}.md`, `${base}.txt`];
+
+const container = document.getElementById('content');
+
+/** very small MD -> HTML converter (headings & paragraphs only) */
+function renderMarkdown(md){
+  const esc = s => s.replace(/[&<>]/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;' }[c]));
+  const lines = md.replace(/\r\n?/g,'\n').split('\n');
+  const out = [];
+  let buf = [];
+  const flushP = ()=>{ if(buf.length){ out.push(`<p>${esc(buf.join('\n'))}</p>`); buf=[]; } };
+
+  for(const line of lines){
+    const m = line.match(/^(#{1,6})\s+(.*)$/);
+    if(m){ flushP(); const level=m[1].length; out.push(`<h${level}>${esc(m[2])}</h${level}>`); continue;}
+    if(line.trim()===''){ flushP(); continue; }
+    buf.push(line);
+  }
+  flushP();
+  return `<div class="md">${out.join('\n')}</div>`;
+}
+
+async function loadOne(url){
+  const res = await fetch(url, {cache:'no-store'});
+  if(!res.ok) throw new Error(res.statusText);
+  const text = await res.text();
+  const ext  = url.split('.').pop().toLowerCase();
+  if(ext==='md'){
+    container.innerHTML = renderMarkdown(text);
+  }else{
+    // plain text
+    container.innerHTML = `<pre>${text
+      .replace(/[&<>]/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;' }[c]))}</pre>`;
+  }
+  return text;
+}
+
+(async ()=>{
+  let lastErr;
+  for(const u of candidates){
+    try{
+      const all = await loadOne(u);
+      // copy button
+      document.getElementById('copy').onclick = async ()=>{
+        try{ await navigator.clipboard.writeText(all); alert('Copied!'); }
+        catch(e){ alert('Copy failed'); }
+      };
+      return;
+    }catch(e){ lastErr = e; }
+  }
+  container.innerHTML =
+    `<p style="color:#b00">Text file not found for <code>${id}</code>.<br>
+     Put <code>${id}.md</code> or <code>${id}.txt</code> under <code>roudoku/en/texts/</code>.</p>`;
+  console.error(lastErr);
+})();
+</script>
 </body>
 </html>
