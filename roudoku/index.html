@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>すやネコ朗読 – すやネコ文庫</title>
+<meta name="description" content="青空文庫の作品を中心にした、すやネコの朗読まとめページ。出典明記・本文改変なし。">
+<meta name="theme-color" content="#f8efe8">
+<style>
+  :root{--bg:#faf8f6; --ink:#222; --sub:#555; --line:#eee; --card:#fff; --btn:#e7f0fb; --btnline:#cfe2ff; --accent:#134a96}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,"Noto Sans JP",sans-serif;color:var(--ink);background:var(--bg)}
+  header{padding:40px 16px;background:linear-gradient(180deg,#f8efe8 0%, transparent 70%)}
+  .wrap{max-width:960px;margin:0 auto;padding:0 16px}
+  h1{margin:0 0 8px;font-size:clamp(1.6rem,3.6vw,2.3rem)}
+  .sub{margin:0;color:#777}
+  .hero{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
+  .btn{display:inline-block;padding:10px 14px;border-radius:12px;border:1px solid var(--line);background:#f3f1ef;color:var(--ink);text-decoration:none;font-weight:600}
+  .btn.primary{background:var(--btn);border-color:var(--btnline);color:var(--accent)}
+  main{padding:24px 0}
+  .list{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+  .card h3{margin:2px 0 6px;font-size:1.05rem}
+  .links{display:flex;gap:8px;flex-wrap:wrap}
+  .links a{font-size:.92rem}
+  footer{padding:28px 16px;color:#777}
+  @media (prefers-color-scheme: dark){
+    :root{--bg:#0f0e0e; --ink:#eee; --sub:#aaa; --line:#2a2a2a; --card:#151515; --btn:#152238; --btnline:#2a3f66}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>すやネコ朗読</h1>
+    <p class="sub">著作権切れの作品を中心にやさしい朗読をお届け。出典を明記し、本文の改変は行いません。</p>
+    <div class="hero">
+      <a class="btn" href="../index.html">← すやネコ文庫トップ</a>
+      <a class="btn primary" href="https://www.youtube.com/@YOUR_CHANNEL" target="_blank" rel="noopener">すやネコ朗読を聞く（YouTube）</a>
+      <a class="btn" href="https://www.instagram.com/YOUR_INSTAGRAM" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="list">
+
+    <!-- ▼作品サンプル：必要なだけ複製してください -->
+    <article class="card">
+      <h3>（作品名） / （作者名）</h3>
+      <div class="links">
+        <a class="btn primary" href="https://www.youtube.com/watch?v=XXXXXXXX" target="_blank" rel="noopener">すやネコ朗読を聞く</a>
+        <a class="btn" href="https://www.aozora.gr.jp/cards/XXXXXXXX.html" target="_blank" rel="noopener">本文（青空文庫）</a>
+        <a class="btn" href="./en/work-template.html">English text</a>
+      </div>
+    </article>
+
+    <!-- 例：タイトル・作者が長い場合でもOK。カードは可変 -->
+    <article class="card">
+      <h3>（別の作品名） / （作者名）</h3>
+      <div class="links">
+        <a class="btn primary" href="https://www.youtube.com/watch?v=YYYYYYYY" target="_blank" rel="noopener">すやネコ朗読を聞く</a>
+        <a class="btn" href="https://www.aozora.gr.jp/cards/YYYYYYYY.html" target="_blank" rel="noopener">本文（青空文庫）</a>
+        <a class="btn" href="./en/work-template.html">English text</a>
+      </div>
+    </article>
+    <!-- ▲ここまで複製 -->
+
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><small>© すやネコ文庫</small></div>
+</footer>
+</body>
+</html>
