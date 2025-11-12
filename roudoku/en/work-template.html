@@ -1,142 +1,164 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Reading Text | Suyaneko Bunko</title>
-<meta name="description" content="English reading text for Suyaneko Bunko.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>English Text – Suyaneko Bunko</title>
+<meta name="description" content="Suyaneko Bunko: English text reader.">
+<!-- 可愛い丸ゴ系：Nunito（英字）＋ M PLUS Rounded 1c（日本語フォールバック） -->
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+<!-- 既存のNotoも利用するなら↓を残してOK（不要なら削除可） -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
-  :root{--bg:#faf8f6;--card:#fff;--ink:#222;--sub:#666;--line:#eee;--link:#2b6cb0}
+  :root{
+    /* 初期値：丸めフォントをデフォルトにしています */
+    --ff: "Nunito", "M PLUS Rounded 1c", system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    --fs: 18px; --lh: 1.9; --maxw: 42rem;
+    --ink:#222; --sub:#666; --line:#eee; --bg:#faf8f6; --card:#fff; --btn:#f3f1ef;
+  }
   *{box-sizing:border-box}
-  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,"Noto Sans",sans-serif;color:var(--ink);background:var(--bg)}
-  header{padding:32px 16px;background:linear-gradient(180deg,#f8efe8,transparent)}
-  .wrap{max-width:960px;margin:0 auto;padding:0 16px}
-  a{color:var(--link);text-decoration:none;border-bottom:1px solid #cfe2ff}
-  h1{margin:6px 0 0;font-size:clamp(1.4rem,3.5vw,2.2rem)}
-  .meta{margin:.25rem 0 1rem;color:var(--sub)}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin:14px 0}
-  .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
-  .btn{display:inline-block;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:#f3f1ef;color:var(--ink);text-decoration:none;font-weight:600}
-  pre{white-space:pre-wrap;word-wrap:break-word}
-  .md p{margin:0 0 1em}
-  .muted{color:#999;font-size:.9rem}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--ff)}
+  header{position:sticky;top:0;z-index:10;background:linear-gradient(180deg,#f8efe8,transparent);border-bottom:1px solid var(--line)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:14px 16px}
+  .bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .back{margin-right:auto}
+  a.link{color:#345;text-decoration:none;border-bottom:1px solid #ccd}
+  .pill{display:inline-flex;align-items:center;gap:6px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--btn)}
+  select, button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 8px}
+  button{cursor:pointer}
+  main{padding:22px 16px}
+  .reader{
+    max-width:var(--maxw);
+    margin:0 auto;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:18px;
+    white-space:pre-wrap;
+    word-break:break-word;
+    font-family:var(--ff);
+    font-size:var(--fs);
+    line-height:var(--lh);
+  }
+  .meta{max-width:var(--maxw);margin:0 auto 10px;color:var(--sub)}
   @media (prefers-color-scheme: dark){
-    :root{--bg:#0f0e0e;--card:#151515;--ink:#eee;--sub:#aaa;--line:#2a2a2a;--link:#9ec0ff}
-    a{border-bottom-color:#2a3f66}
+    :root{--ink:#eee;--sub:#aaa;--line:#2a2a2a;--bg:#0f0e0e;--card:#151515;--btn:#1a1a1a}
+    a.link{color:#cfe2ff;border-bottom-color:#2a3f66}
+    select, button{background:#111;color:#eee;border-color:#333}
   }
 </style>
 </head>
 <body>
-<header class="wrap">
-  <div><a href="../index.html">← Back to Roudoku</a></div>
-  <h1 id="title">Reading text</h1>
-  <p class="meta" id="meta"></p>
-  <div class="toolbar">
-    <a id="yt" class="btn" href="#" target="_blank" rel="noopener">Listen on YouTube</a>
-    <a id="aozora" class="btn" href="#" target="_blank" rel="noopener">Japanese text (Aozora Bunko)</a>
-    <button id="copy" class="btn" type="button">Copy all text</button>
+
+<header>
+  <div class="wrap">
+    <div class="bar">
+      <a class="link back" href="../index.html">← Back to Roudoku</a>
+
+      <!-- フォント選択 -->
+      <label class="pill">
+        Font
+        <select id="fontSel" title="Font family">
+          <option value="rounded" selected>Rounded (cute)</option>
+          <option value="sans">Sans (Noto Sans / System)</option>
+          <option value="serif">Serif (Noto Serif / Mincho)</option>
+          <option value="system">System only</option>
+          <option value="yu-mincho">"游明朝 / Yu Mincho"</option>
+          <option value="hiragino-mincho">"ヒラギノ明朝 / Hiragino Mincho"</option>
+          <option value="meiryo">メイリオ / Meiryo</option>
+        </select>
+      </label>
+
+      <!-- 文字サイズ -->
+      <label class="pill">
+        Size
+        <button type="button" id="smaller" aria-label="Smaller">A−</button>
+        <button type="button" id="larger"  aria-label="Larger">A＋</button>
+      </label>
+
+      <!-- 行間 -->
+      <label class="pill">
+        Line
+        <select id="lineSel" title="Line height">
+          <option value="1.6">1.6</option>
+          <option value="1.8">1.8</option>
+          <option value="1.9" selected>1.9</option>
+          <option value="2.0">2.0</option>
+          <option value="2.2">2.2</option>
+        </select>
+      </label>
+    </div>
   </div>
 </header>
 
-<main class="wrap">
-  <section class="card" id="content">
-    <p class="muted">Loading…</p>
-  </section>
+<main>
+  <p class="meta" id="workMeta"></p>
+  <article id="reader" class="reader" aria-live="polite">Loading…</article>
 </main>
 
-<footer class="wrap">
-  <p class="muted">© Suyaneko Bunko</p>
-</footer>
-
 <script>
-/**
- * Query params:
- *   ?id=1001FNT01           // required, slug = file name base
- *   &title=Blue+Button      // optional
- *   &author=Ogawa+Mimei     // optional
- *   &yt=https://...         // optional (YouTube URL)
- *   &jp=https://...         // optional (Aozora URL)
- */
-const qs  = new URLSearchParams(location.search);
-const id  = (qs.get('id') || '').trim();
-const title  = (qs.get('title')  || '').trim();
-const author = (qs.get('author') || '').trim();
-const yt  = (qs.get('yt')  || '').trim();
-const jp  = (qs.get('jp')  || '').trim();
+  // ---- クエリからID取得（例: ?id=53452） ----
+  const params = new URLSearchParams(location.search);
+  const id = params.get('id');
+  const TEXT_URL = id ? `./texts/${id}.txt` : null;
 
-if(!id){
-  document.getElementById('content').innerHTML =
-    `<p style="color:#b00">Error: missing parameter <code>?id=SLUG</code>.</p>`;
-  throw new Error('missing id');
-}
+  // ---- 保存設定 ----
+  const rootStyle = document.documentElement.style;
+  const PREF_KEY = 'sb_reader_prefs';
+  const defaults = { font:'rounded', size:18, line:'1.9' }; // ← デフォルトを rounded
 
-document.getElementById('title').textContent =
-  title ? `${title} — English text` : `English text (${id})`;
-document.getElementById('meta').textContent =
-  author ? `Author: ${author}` : '';
-
-const ytA = document.getElementById('yt');
-const jpA = document.getElementById('aozora');
-if(yt) ytA.href = yt; else ytA.style.display='none';
-if(jp) jpA.href = jp; else jpA.style.display='none';
-
-// 1) try Markdown -> 2) fallback to plain text
-const base = `./texts/${id}`;
-const candidates = [`${base}.md`, `${base}.txt`];
-
-const container = document.getElementById('content');
-
-/** very small MD -> HTML converter (headings & paragraphs only) */
-function renderMarkdown(md){
-  const esc = s => s.replace(/[&<>]/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;' }[c]));
-  const lines = md.replace(/\r\n?/g,'\n').split('\n');
-  const out = [];
-  let buf = [];
-  const flushP = ()=>{ if(buf.length){ out.push(`<p>${esc(buf.join('\n'))}</p>`); buf=[]; } };
-
-  for(const line of lines){
-    const m = line.match(/^(#{1,6})\s+(.*)$/);
-    if(m){ flushP(); const level=m[1].length; out.push(`<h${level}>${esc(m[2])}</h${level}>`); continue;}
-    if(line.trim()===''){ flushP(); continue; }
-    buf.push(line);
+  function loadPrefs(){
+    try { return Object.assign({}, defaults, JSON.parse(localStorage.getItem(PREF_KEY)||'{}')); }
+    catch(_){ return {...defaults}; }
   }
-  flushP();
-  return `<div class="md">${out.join('\n')}</div>`;
-}
+  function savePrefs(p){ localStorage.setItem(PREF_KEY, JSON.stringify(p)); }
 
-async function loadOne(url){
-  const res = await fetch(url, {cache:'no-store'});
-  if(!res.ok) throw new Error(res.statusText);
-  const text = await res.text();
-  const ext  = url.split('.').pop().toLowerCase();
-  if(ext==='md'){
-    container.innerHTML = renderMarkdown(text);
+  function applyFont(key){
+    const stacks = {
+      /* 丸めで可愛い：英字Nunito＋日本語はM PLUS Rounded 1c */
+      rounded: '"Nunito","M PLUS Rounded 1c", system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans JP", Meiryo, sans-serif',
+      sans: '"Noto Sans JP", system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif',
+      serif: '"Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", serif',
+      system: 'system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans JP", Meiryo, sans-serif',
+      'yu-mincho': '"Yu Mincho", "游明朝", "Hiragino Mincho ProN", serif',
+      'hiragino-mincho': '"Hiragino Mincho ProN", "Hiragino Mincho Pro", "Yu Mincho", serif',
+      meiryo: 'Meiryo, "Noto Sans JP", system-ui, sans-serif'
+    };
+    rootStyle.setProperty('--ff', stacks[key] || stacks.rounded);
+  }
+  function applySize(px){ rootStyle.setProperty('--fs', px + 'px'); }
+  function applyLine(h){ rootStyle.setProperty('--lh', h); }
+
+  const prefs = loadPrefs();
+  applyFont(prefs.font); applySize(prefs.size); applyLine(prefs.line);
+
+  // UI 初期状態
+  fontSel.value = prefs.font;
+  lineSel.value = prefs.line;
+
+  // 操作ハンドラ
+  fontSel.addEventListener('change', e => { prefs.font = e.target.value; applyFont(prefs.font); savePrefs(prefs); });
+  smaller.addEventListener('click', () => { prefs.size = Math.max(12, Math.round((prefs.size - 1) * 10) / 10); applySize(prefs.size); savePrefs(prefs); });
+  larger.addEventListener('click', () => { prefs.size = Math.min(36, Math.round((prefs.size + 1) * 10) / 10); applySize(prefs.size); savePrefs(prefs); });
+  lineSel.addEventListener('change', e => { prefs.line = e.target.value; applyLine(prefs.line); savePrefs(prefs); });
+
+  // ---- テキスト読込 ----
+  const reader = document.getElementById('reader');
+  const meta = document.getElementById('workMeta');
+
+  if(!TEXT_URL){
+    reader.textContent = 'ID is missing. Use ?id=53452 etc.';
   }else{
-    // plain text
-    container.innerHTML = `<pre>${text
-      .replace(/[&<>]/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;' }[c]))}</pre>`;
+    fetch(TEXT_URL, {cache:'no-store'})
+      .then(r => r.ok ? r.text() : Promise.reject(r.status))
+      .then(txt => {
+        txt = txt.replace(/\r\n/g, '\n');
+        reader.textContent = txt;
+        meta.textContent = `Source: texts/${id}.txt`;
+      })
+      .catch(err => { reader.textContent = 'Failed to load text: ' + err; });
   }
-  return text;
-}
-
-(async ()=>{
-  let lastErr;
-  for(const u of candidates){
-    try{
-      const all = await loadOne(u);
-      // copy button
-      document.getElementById('copy').onclick = async ()=>{
-        try{ await navigator.clipboard.writeText(all); alert('Copied!'); }
-        catch(e){ alert('Copy failed'); }
-      };
-      return;
-    }catch(e){ lastErr = e; }
-  }
-  container.innerHTML =
-    `<p style="color:#b00">Text file not found for <code>${id}</code>.<br>
-     Put <code>${id}.md</code> or <code>${id}.txt</code> under <code>roudoku/en/texts/</code>.</p>`;
-  console.error(lastErr);
-})();
 </script>
 </body>
 </html>
