@@ -1,0 +1,529 @@
+:root {
+  --night: #101a3a;
+  --deep-night: #071126;
+  --blue: #1d315f;
+  --moon: #fff4c6;
+  --paper: #fffaf0;
+  --paper-soft: #f5ecd9;
+  --book: #8d4f3d;
+  --book-dark: #5a2f29;
+  --ink: #251d1b;
+  --muted: #675f56;
+  --line: rgba(104, 82, 67, 0.2);
+  --shadow: rgba(3, 8, 24, 0.22);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 78% 8%, rgba(255, 244, 198, 0.24), transparent 12rem),
+    radial-gradient(circle at 14% 12%, rgba(255, 250, 240, 0.14), transparent 9rem),
+    linear-gradient(180deg, var(--deep-night) 0%, var(--night) 34%, #e8dcc8 100%);
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", "Noto Serif JP", serif;
+  font-size: 16px;
+  line-height: 1.85;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.88) 0 1px, transparent 1.8px),
+    radial-gradient(circle, rgba(255, 244, 198, 0.72) 0 1.4px, transparent 2.4px);
+  background-position: 18px 22px, 82px 54px;
+  background-size: 92px 92px, 137px 137px;
+  opacity: 0.34;
+}
+
+a {
+  color: inherit;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--moon);
+  outline-offset: 4px;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid rgba(255, 250, 240, 0.16);
+  background: rgba(7, 17, 38, 0.82);
+  backdrop-filter: blur(14px);
+}
+
+.header-inner,
+main,
+.footer-inner {
+  width: min(1080px, calc(100% - 36px));
+  margin: 0 auto;
+}
+
+.header-inner {
+  display: grid;
+  gap: 18px;
+  padding: 18px 0;
+}
+
+.brand {
+  display: inline-grid;
+  gap: 1px;
+  width: fit-content;
+  color: var(--paper);
+  text-decoration: none;
+}
+
+.brand-name {
+  font-size: clamp(1.25rem, 5vw, 1.75rem);
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.2;
+}
+
+.brand-note,
+.section-kicker,
+.card-label,
+.note,
+.copyright,
+.news-item time,
+.news-item span {
+  color: var(--muted);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+}
+
+.site-header .brand-note,
+.site-header .site-nav,
+.footer-inner,
+.site-footer a {
+  color: rgba(255, 250, 240, 0.76);
+}
+
+.site-nav,
+.footer-nav,
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  align-items: center;
+}
+
+.site-nav a,
+.footer-nav a {
+  min-height: 34px;
+  color: inherit;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+main {
+  padding: 42px 0 76px;
+}
+
+.hero {
+  position: relative;
+  display: grid;
+  gap: 28px;
+  overflow: hidden;
+  min-height: 560px;
+  padding: clamp(26px, 6vw, 66px);
+  border: 1px solid rgba(255, 250, 240, 0.18);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(7, 17, 38, 0.94), rgba(29, 49, 95, 0.72)),
+    var(--night);
+  box-shadow: 0 24px 70px var(--shadow);
+}
+
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.hero::before {
+  top: 36px;
+  right: 34px;
+  width: clamp(76px, 18vw, 150px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fffbd7 0 28%, rgba(255, 244, 198, 0.64) 38%, transparent 70%);
+  filter: blur(0.2px);
+}
+
+.hero::after {
+  inset: auto 0 0;
+  height: 38%;
+  background: linear-gradient(180deg, transparent, rgba(9, 12, 22, 0.38));
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  align-content: center;
+  max-width: 620px;
+  padding: clamp(22px, 4vw, 34px);
+  border: 1px solid rgba(255, 250, 240, 0.16);
+  border-radius: 8px;
+  background: rgba(7, 17, 38, 0.68);
+  color: var(--paper);
+}
+
+.section-kicker {
+  margin: 0 0 8px;
+  color: var(--book);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3,
+p {
+  overflow-wrap: anywhere;
+}
+
+h1 {
+  margin: 0;
+  color: var(--paper);
+  font-size: clamp(2rem, 8vw, 4.25rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.hero-lead {
+  max-width: 34em;
+  margin: 18px 0 0;
+  color: rgba(255, 250, 240, 0.88);
+  font-size: clamp(1rem, 3vw, 1.18rem);
+}
+
+.hero-actions {
+  margin-top: 26px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 10px 18px;
+  border: 1px solid rgba(255, 244, 198, 0.44);
+  border-radius: 999px;
+  background: rgba(255, 250, 240, 0.1);
+  color: var(--paper);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.button-primary {
+  background: var(--moon);
+  color: #2b231f;
+}
+
+.hero-visual {
+  position: relative;
+  z-index: 1;
+  min-height: 320px;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 250, 240, 0.18);
+  border-radius: 8px;
+  background:
+    linear-gradient(145deg, rgba(255, 244, 198, 0.12), rgba(141, 79, 61, 0.24)),
+    var(--blue);
+}
+
+.hero-visual img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  object-fit: cover;
+  object-position: 50% 48%;
+}
+
+.section-block {
+  position: relative;
+  padding: clamp(56px, 9vw, 96px) 0;
+  border-bottom: 1px solid rgba(37, 29, 27, 0.16);
+}
+
+.section-heading {
+  display: grid;
+  gap: 4px;
+  margin-bottom: 28px;
+}
+
+.section-block .section-kicker {
+  color: var(--book-dark);
+}
+
+h2 {
+  margin: 0;
+  color: var(--paper);
+  font-size: clamp(1.55rem, 4vw, 2.3rem);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: 0;
+}
+
+.section-block:not(.night-block) h2,
+.section-block:not(.night-block) .section-copy,
+.section-block:not(.night-block) .news-list {
+  color: var(--ink);
+}
+
+.split-content {
+  display: grid;
+  gap: 22px;
+}
+
+.section-copy,
+.news-list {
+  padding: clamp(22px, 5vw, 34px);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 250, 240, 0.94);
+  box-shadow: 0 16px 34px rgba(69, 43, 28, 0.08);
+}
+
+.section-copy p {
+  max-width: 43em;
+  margin: 0;
+}
+
+.note {
+  margin-top: 16px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.feature-card {
+  position: relative;
+  display: grid;
+  align-content: end;
+  gap: 8px;
+  min-height: 210px;
+  padding: 24px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background:
+    linear-gradient(160deg, rgba(255, 250, 240, 0.96), rgba(245, 236, 217, 0.94)),
+    var(--paper);
+  color: var(--ink);
+  text-decoration: none;
+  box-shadow: 0 16px 34px rgba(69, 43, 28, 0.08);
+}
+
+.feature-card::before {
+  content: "";
+  position: absolute;
+  top: 26px;
+  right: 24px;
+  width: 74px;
+  height: 106px;
+  border: 1px solid rgba(90, 47, 41, 0.2);
+  border-left: 8px solid rgba(141, 79, 61, 0.42);
+  border-radius: 4px 8px 8px 4px;
+  background: linear-gradient(90deg, rgba(141, 79, 61, 0.16), rgba(255, 250, 240, 0.82));
+  transform: rotate(7deg);
+}
+
+.feature-card strong {
+  position: relative;
+  font-size: clamp(1.15rem, 3vw, 1.35rem);
+  line-height: 1.35;
+}
+
+.feature-card span {
+  position: relative;
+}
+
+.feature-card span:last-child {
+  color: var(--muted);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+  font-size: 0.92rem;
+}
+
+.card-label {
+  color: var(--book-dark);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+  font-weight: 700;
+}
+
+.night-block {
+  width: 100vw;
+  margin-right: calc(50% - 50vw);
+  margin-left: calc(50% - 50vw);
+  padding-right: max(18px, calc((100vw - 1080px) / 2));
+  padding-left: max(18px, calc((100vw - 1080px) / 2));
+  background:
+    radial-gradient(circle at 88% 22%, rgba(255, 244, 198, 0.18), transparent 14rem),
+    linear-gradient(180deg, rgba(7, 17, 38, 0.92), rgba(16, 26, 58, 0.96));
+}
+
+.night-block .section-copy,
+.night-block .feature-card {
+  border-color: rgba(255, 250, 240, 0.18);
+}
+
+.link-stack {
+  display: grid;
+  gap: 14px;
+}
+
+.link-stack .feature-card {
+  min-height: 150px;
+}
+
+.quiet-card {
+  background:
+    linear-gradient(160deg, rgba(255, 250, 240, 0.9), rgba(232, 220, 200, 0.92)),
+    var(--paper-soft);
+}
+
+.news-list {
+  display: grid;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.news-item {
+  display: grid;
+  gap: 4px 18px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.news-item:last-child {
+  border-bottom: 0;
+}
+
+.news-item p {
+  margin: 0;
+}
+
+.site-footer {
+  border-top: 1px solid rgba(255, 250, 240, 0.16);
+  background:
+    radial-gradient(circle at 18% 0%, rgba(255, 244, 198, 0.14), transparent 13rem),
+    var(--deep-night);
+}
+
+.footer-inner {
+  display: grid;
+  gap: 20px;
+  padding: 36px 0;
+}
+
+.footer-brand .brand-name {
+  font-size: 1.25rem;
+}
+
+.copyright {
+  margin: 0;
+  color: rgba(255, 250, 240, 0.62);
+}
+
+@media (min-width: 760px) {
+  body {
+    font-size: 17px;
+  }
+
+  .header-inner {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+
+  .hero {
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 0.72fr);
+  }
+
+  .split-content {
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.62fr);
+    align-items: stretch;
+  }
+
+  .news-item {
+    grid-template-columns: minmax(130px, 170px) 1fr;
+    align-items: baseline;
+  }
+
+  .footer-inner {
+    grid-template-columns: 1fr auto;
+    align-items: start;
+  }
+
+  .copyright {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .header-inner,
+  main,
+  .footer-inner {
+    width: min(100% - 28px, 1080px);
+  }
+
+  .site-header {
+    position: static;
+  }
+
+  main {
+    padding-top: 24px;
+  }
+
+  .hero {
+    min-height: auto;
+  }
+
+  .hero-copy {
+    padding: 22px 18px;
+  }
+
+  .hero-visual,
+  .hero-visual img {
+    min-height: 260px;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .feature-card {
+    min-height: 170px;
+  }
+}
+
+@media (max-width: 360px) {
+  body {
+    font-size: 15px;
+  }
+
+  .header-inner,
+  main,
+  .footer-inner {
+    width: min(100% - 22px, 1080px);
+  }
+}
