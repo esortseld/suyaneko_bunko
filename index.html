@@ -4,13 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>すやネコ文庫 ｜ Suyaneko Bunko</title>
-  <meta name="description" content="気分に頼らず“情報で探す”読書地図と、本を開かない読書すやネコ朗読をお届けする小さな文庫。">
+  <meta name="description" content="本を探すこと、読むこと、耳で楽しむこと。それぞれの入口から好きな本が少しずつ増えていくことを目指す読書のための場所です。">
   <meta property="og:title" content="すやネコ文庫 ｜ Suyaneko Bunko">
-  <meta property="og:description" content="読書地図（客観指標で探す）と朗読（青空文庫）のハブサイト。">
+  <meta property="og:description" content="読書地図とスヤねこ朗読を通じて、読書をもっと身近にするための場所です。">
   <meta property="og:type" content="website">
   <meta property="og:image" content="assets/suyaneko-main.jpg">
   <meta name="theme-color" content="#101a3a">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="top-layout.css?v=20260622-01">
 </head>
 <body>
   <header class="site-header">
@@ -22,7 +23,7 @@
 
       <nav class="site-nav" aria-label="主要ナビゲーション">
         <a href="#reading-map">読書地図</a>
-        <a href="#reading-aloud">すやネコ朗読</a>
+        <a href="#reading-aloud">スヤねこ朗読</a>
         <a href="https://www.instagram.com/YOUR_INSTAGRAM" target="_blank" rel="noopener">Instagram</a>
       </nav>
     </div>
@@ -33,10 +34,11 @@
       <div class="hero-copy">
         <p class="section-kicker">Suyaneko Bunko</p>
         <h1 id="hero-title">すやネコ文庫 ｜ Suyaneko Bunko</h1>
-        <p class="hero-lead">気分に頼らず“情報”で選ぶ『読書地図』と、本を開かない読書『すやネコ朗読』</p>
+        <p class="hero-lead">読書を、もっと身近に。</p>
+        <p class="concept-text">本を探すこと、読むこと、耳で楽しむこと。それぞれの入口から、好きな本が少しずつ増えていくことを目指す読書のための場所です。</p>
         <div class="hero-actions" aria-label="主要リンク">
           <a class="button button-primary" href="https://esortseld.github.io/readingmap/">読書地図をひらく</a>
-          <a class="button" href="./roudoku/index.html">すやネコ朗読をひらく</a>
+          <a class="button" href="./roudoku/index.html">スヤねこ朗読をひらく</a>
         </div>
       </div>
 
@@ -45,51 +47,43 @@
       </figure>
     </section>
 
-    <section class="section-block split-block" id="reading-map" aria-labelledby="reading-map-title">
+    <section class="section-block main-gateway" aria-labelledby="gateway-title">
       <div class="section-heading">
-        <p class="section-kicker">01</p>
-        <h2 id="reading-map-title">読書地図とは</h2>
+        <p class="section-kicker">Main</p>
+        <h2 id="gateway-title">ふたつの入口</h2>
       </div>
-      <div class="split-content">
-        <div class="section-copy">
-          <p>ページ数・語り・時間構造・時代・地域など、客観指標だけで本を探せる小さなカタログ。作品カードでは主観メモ（採点・おすすめ）を枠分けして掲載します。</p>
-        </div>
-        <a class="feature-card book-card" href="https://esortseld.github.io/readingmap/">
-          <span class="card-label">Catalog</span>
-          <strong>読書地図（一覧）へ</strong>
-          <span>ページをひらく</span>
+
+      <div class="gateway-grid">
+        <a class="feature-card gateway-card book-card" id="reading-map" href="https://esortseld.github.io/readingmap/">
+          <span class="card-label">Reading Map</span>
+          <strong>気分で選ばない読書地図</strong>
+          <span class="gateway-copy">本を探しやすくして、好きな本を増やすための読書地図。</span>
+          <span class="gateway-link">読書地図をひらく</span>
+        </a>
+
+        <a class="feature-card gateway-card" id="reading-aloud" href="./roudoku/index.html">
+          <span class="card-label">Reading Aloud</span>
+          <strong>スヤねこ朗読</strong>
+          <span class="gateway-copy">読むのが苦手な人や、眠る前の時間に寄り添う朗読。</span>
+          <span class="gateway-link">朗読をひらく</span>
         </a>
       </div>
     </section>
 
-    <section class="section-block split-block night-block" id="reading-aloud" aria-labelledby="reading-aloud-title">
+    <section class="section-block concept-block" aria-labelledby="concept-title">
       <div class="section-heading">
-        <p class="section-kicker">02</p>
-        <h2 id="reading-aloud-title">朗読（青空文庫）</h2>
+        <p class="section-kicker">About</p>
+        <h2 id="concept-title">このサイトについて</h2>
       </div>
-      <div class="split-content">
-        <div class="section-copy">
-          <p>著作権切れの作品を中心にやさしい朗読をお届け。出典を明記し、本文の改変は行いません。</p>
-          <p class="note">※ 朗読の公開先はYouTube、本サイトは案内とデータのハブです。</p>
-        </div>
-        <div class="link-stack" aria-label="朗読リンク">
-          <a class="feature-card" href="./roudoku/index.html">
-            <span class="card-label">Reading</span>
-            <strong>すやネコ朗読（まとめ）</strong>
-            <span>ページをひらく</span>
-          </a>
-          <a class="feature-card quiet-card" href="https://www.aozora.gr.jp/" target="_blank" rel="noopener">
-            <span class="card-label">Source</span>
-            <strong>青空文庫（公式）</strong>
-            <span>外部サイトをひらく</span>
-          </a>
-        </div>
+      <div class="section-copy">
+        <p>スヤねこ文庫は、読書をテーマにした小さな場所です。</p>
+        <p>読書地図では、本を探しやすくすることで、好きな本が増えるきっかけを作ります。スヤねこ朗読では、本を読むことが苦手な人や、眠る前に静かな時間を持ちたい人に、耳で楽しむ読書を届けます。</p>
       </div>
     </section>
 
     <section class="section-block" id="updates" aria-labelledby="updates-title">
       <div class="section-heading">
-        <p class="section-kicker">03</p>
+        <p class="section-kicker">Update</p>
         <h2 id="updates-title">更新情報</h2>
       </div>
       <div class="news-list">
@@ -111,7 +105,7 @@
       </a>
       <nav class="footer-nav" aria-label="フッターナビゲーション">
         <a href="#reading-map">読書地図</a>
-        <a href="#reading-aloud">すやネコ朗読</a>
+        <a href="#reading-aloud">スヤねこ朗読</a>
         <a href="https://www.instagram.com/YOUR_INSTAGRAM" target="_blank" rel="noopener">Instagram</a>
       </nav>
       <p class="copyright">© すやネコ文庫 / Suyaneko Bunko</p>
