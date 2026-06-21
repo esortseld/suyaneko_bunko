@@ -1,0 +1,97 @@
+/* Top page layout refinement: keep existing color palette, clarify two main entrances */
+.hero {
+  min-height: auto;
+}
+
+.hero-copy {
+  align-content: center;
+}
+
+.hero-lead {
+  font-size: clamp(1.02rem, 3vw, 1.22rem);
+}
+
+.concept-text {
+  max-width: 35em;
+  margin: 18px 0 0;
+  color: rgba(255, 250, 240, 0.86);
+}
+
+.main-gateway {
+  padding-top: clamp(44px, 8vw, 76px);
+}
+
+.gateway-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.gateway-card {
+  min-height: 250px;
+}
+
+.gateway-card strong {
+  max-width: 15em;
+  font-size: clamp(1.42rem, 5vw, 2rem);
+}
+
+.gateway-card .gateway-copy {
+  max-width: 25em;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.gateway-card .gateway-link {
+  margin-top: 8px;
+  color: var(--book-dark);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+  font-size: 0.94rem;
+  font-weight: 700;
+}
+
+.concept-block .section-copy p + p {
+  margin-top: 14px;
+}
+
+@media (min-width: 760px) {
+  .hero {
+    grid-template-columns: minmax(0, 0.95fr) minmax(300px, 0.72fr);
+    align-items: stretch;
+  }
+
+  .gateway-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gateway-card {
+    min-height: 290px;
+  }
+}
+
+@media (max-width: 640px) {
+  .site-nav {
+    gap: 8px 14px;
+  }
+
+  .hero-actions {
+    gap: 10px;
+  }
+
+  .concept-text {
+    margin-top: 14px;
+  }
+
+  .main-gateway {
+    padding-top: 38px;
+  }
+
+  .gateway-card {
+    min-height: 220px;
+  }
+
+  .gateway-card::before {
+    width: 58px;
+    height: 86px;
+    opacity: 0.72;
+  }
+}
